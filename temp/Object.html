@@ -1,0 +1,137 @@
+//var scope = "global";
+        //function t() {
+        //    console.log(scope);
+        //    alert(scope);
+        //    var scope = "local"
+        //    console.log(scope);
+        //    alert(scope);
+        //}
+
+        //var a = "Hello";
+        //function test() {
+        //    var a;
+        //    alert(a);
+        //    a = "World";
+        //    alert(a);
+
+        //var a = "Hello";
+        //function test() {
+        //    alert(a);
+        //    //var a = "World";
+        //    a = "World";
+        //    alert(a);
+        //}
+
+        //var a = 1;
+        //function test() {
+        //    alert(a);
+        //    var a = 2;
+        //    alert(a);
+        //}
+        //test();
+        //alert(a);
+
+        var color = "red";
+        function foo() {
+            var color = 'blue';
+            var p = function bar() { alert(this.color); }
+            color = "black";
+
+            return p;
+        }
+
+        //var getLocalVariable = foo();
+        //getLocalVariable();// private variable 
+
+        if (true) { var a = 11; }
+
+        function foo() {
+            var b = 22;
+            c = 33;
+        }
+
+        $(document).ready(function () {
+            //debugger;
+            //foo();
+            //console.log(a);
+            //console.log(b);
+            //console.log(c);
+
+            //var getLocalVariable = foo();
+            //getLocalVariable();// private variable 
+
+            //var getLocalVariable = foo();
+            //getLocalVariable();    //"private variable"
+
+            //var a = 5;
+            //a = new Object();
+
+            //debugger;
+            //var a = fun();
+            //a(); //0
+            //a(); //1
+            //a = fun();
+            //a(); //0
+            //PeopleTest();
+            //fun1();
+
+            //PrototypeTest();
+
+            //$("#p").click(function () {
+            //    alert('haha');
+            //});
+        });
+
+        function fun() {
+            var i = 0;
+            return function () {
+                console.log(i++);
+            }
+        }
+
+        function fun1() {
+            for (var i = 0; i < 5; i++) { }
+            alert(i);
+        }
+
+        function People(name) {
+            this.name = name;
+            //对象方法
+            this.Introduce = function () {
+                alert("My name is " + this.name);
+            }
+        }
+
+        //类方法
+        People.Run = function () {
+            alert("I can run");
+        }
+        //原型方法
+        People.prototype.IntroduceChinese = function () {
+            alert("我的名字是" + this.name);
+        }
+
+        function PeopleTest() {
+
+            //测试
+            var p1 = new People("Windking");
+
+            p1.Introduce();
+
+            People.Run();
+
+            p1.IntroduceChinese();
+        }
+
+        var fun = function () { };
+        fun.prototype.hello = function () { alert("原型方法！"); }
+
+        fun.hello = function () { alert("类方法！"); };
+
+        function PrototypeTest() {
+            var xx = new fun();
+            xx.hello();
+            fun.hello();
+        }
+
+

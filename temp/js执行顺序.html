@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript"  src='jquery-1.12.0.min.js'></script>
+	<!--<script type="text/javascript">
+		
+		var testFunc = function(){
+			alert('3');
+		}
+
+		//alert('4');
+
+		//testFunc();
+
+		function setcookie(c_name,value,expiredays){
+			var exdate=new date();
+			exdate.setdate(exdate.getdate()+expiredays);
+			document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : "; expires="+exdate.togmtstring());
+		}
+
+		function getCookie(c_name) {
+		    if (document.cookie.length > 0) {
+		        c_start = document.cookie.indexOf(c_name + "=")
+		        if (c_start != -1) {
+		            c_start = c_start + c_name.length + 1
+		            c_end = document.cookie.indexOf(";", c_start)
+		            if (c_end == -1) c_end = document.cookie.length
+		            return unescape(document.cookie.substring(c_start, c_end))
+		        }
+		    }
+		    return ""
+		}
+
+		function clearCookie(){
+		    var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+		    if (keys) {
+		        for (var i =  keys.length; i--;)
+		            document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString()
+		    }    
+		}
+
+
+	</script>-->
+</head>
+<body onload="myOnload()">
+	<h1>这是一次愉快的测试！</h1>
+    <script type="text/javascript">
+        function myOnload() {
+            //alert('1');
+            //alert("12345".format(1));
+        }
+    </script>
+	<!--<script type="text/javascript">
+		
+		var A = function (a) {
+			this.a = a;
+			this.b = function(){
+				alert(2);
+			};
+		};
+		A.prototype.get = function () {
+			return this.a;
+		};		
+		var b = new A(4444);
+		var B = A;
+		var c = new B(5555);
+		c.get();
+		c.b();
+		//alert(b.get());
+		//b.b();
+		String.prototype.format = function(arg) {
+			alert(arg);
+			return 'heheda';
+		};	
+
+		$(document).ready(function(){
+			//alert('2');
+		});
+
+	</script>
+
+    <script language="javascript">
+        //定义一个空类
+        function HelloClass() {
+        }
+        //对类的prototype对象进行修改，增加方法method
+        HelloClass.prototype.method = function () {
+            alert("prototype测试");
+        }
+        var obj = new HelloClass(); //创建类HelloClass的实例
+        obj.method(); //调用obj的method方法
+    </script>
+
+    <script language="javascript">
+        //定义一个只有一个属性的类
+        function HelloClass() {
+            this.name = "javakc";
+        }
+        //使用函数的prototype属性给类定义新属性
+        HelloClass.prototype.showName = function () {
+            alert(this.name);
+        }
+        var obj = new HelloClass(); //创建类HelloClass的一个实例
+        //调用通过prototype原型对象定义的showName方法
+        obj.showName();
+    </script>-->
+
+    <script language="javascript">
+        var FatherClass = function (name) {
+            this.name;            
+            this.init = function() {
+                this.name = name;                
+            }
+            this.ShowName = function(){
+                return this.name;
+            }
+            this.SetName = function (vname) {
+                this.name = vname;
+            }
+        }
+        var SonClass = function (name) {
+            
+        }
+        
+        //继承
+        //SonClass.prototype = FatherClass.prototype; //为什么不行呢？
+        SonClass.prototype = new FatherClass();
+        //扩展
+        SonClass.prototype.Propertys = "age";
+        SonClass.prototype.ShowAge = function () {
+            return this.age;
+        }
+        SonClass.prototype.SetAge = function (vage) {
+            this.age = vage;
+        }
+        //测试
+        var obj = new FatherClass();
+        console.log(obj.name);  //undefined
+        obj.init("沈金龙");
+        console.log(obj.ShowName());  //undefined
+        obj.SetName("你的锅");
+        console.log(obj.ShowName());  //你的锅
+
+        var sonObj = new SonClass();
+        console.log(sonObj.name);  //undefined
+        sonObj.init("沈小龙");
+        console.log(sonObj.ShowName()); //undefined
+        sonObj.SetName("我的锅");
+        console.log(sonObj.ShowName());  //我的锅
+
+        console.log(sonObj.age); //undefined
+        sonObj.SetAge("18");
+        console.log(sonObj.ShowAge()); //18
+
+        function People(name) {
+            this.name = name;
+            //对象方法
+            this.Introduce = function () {
+                alert("My name is " + this.name);
+            }
+        }
+        //类方法
+        People.Run = function () {
+            alert("I can run");
+        }
+        //原型方法
+        People.prototype.IntroduceChinese = function () {
+            alert("我的名字是" + this.name);
+        }
+
+        //测试
+        var p1 = new People("Windking");
+
+        p1.Introduce();
+
+        People.Run();
+
+        p1.IntroduceChinese();
+    </script>
+
+</body>
+</html>
+
+

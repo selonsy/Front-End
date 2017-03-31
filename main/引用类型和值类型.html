@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../lib/jquery/jquery-1.12.0.min.js"></script>
+    <script>
+
+        // 赋值
+        var a = 1;  
+        var b = a;      //赋的是a的复制值  
+        b ++;  
+        alert(a);       //"1",b的修改不影响a  
+
+        // 引用
+        var c = [1];
+        var d = c;      //赋的是c的引用 
+        d[0] ++;
+        alert(c);       //"2",b的修改对a也有效
+
+        //起到引用作用又不影响原数组的方法
+        //1.
+        var e=[1];  
+        var f;  
+        f= $.extend(true,{},e)  //ture表示进行深拷贝
+        f[0]++;  
+        alert(e[0]); 
+        //2.
+        var g=[1];  
+        var h=g.concat();  
+        h[0]++;  
+        alert(g[0]);
+        //3.
+        //传值的传递：传给函数的是数值的一个复制，函数中对其的修改外部不可见  
+        var i = 1;  
+        var j = 2;  
+        function change1(i,j) {  
+            var c = i;  
+            i = j;      //用新引用覆盖  
+            j = c;  
+            alert(i);   //"2"           
+            alert(j);   //"1"  
+        }  
+        change1(i,j);  
+        alert(i);       //"1"           
+        alert(j);       //"2"  
+        //传址的传递：传给函数的是数值的一个引用，函数中对其属性的修改外部可见，但用新引用覆盖其则在外部不可见，比如  
+        var m = [1, 2, 3];  
+        var n = [5, 6];  
+        function change2(m,n) {  
+            m[0] = 4;    //对其属性的修改外部可见    
+            var c = m;  
+            m = n;       //用新引用覆盖  
+            n = c;  
+            alert(m);    //"5,6"           
+            alert(n);    //"4,2,3"  
+        }  
+        change2(m,n);  
+        alert(m);       //"4,2,3"  
+        alert(n);       //"5,6"  
+        //从结果可以看出a和b并没有互换   因为用新引用覆盖在外部不可见 这个很自然 因为函数只是拿到了引用 并没有权力更改引用  
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
